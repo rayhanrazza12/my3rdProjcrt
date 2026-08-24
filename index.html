@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Study Helper</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="app">
+    <section class="hero">
+      <p class="eyebrow">YOUR PERSONAL LEARNING PARTNER</p>
+      <h1>AI Study Helper</h1>
+      <p>Ask a question, get a simple explanation, summary, or quick quiz.</p>
+    </section>
+
+    <section class="card">
+      <label for="question">What would you like to study?</label>
+      <textarea id="question" rows="7" placeholder="For example: Explain photosynthesis in simple words."></textarea>
+
+      <p class="label">Choose what you need</p>
+      <div class="modes" role="group" aria-label="Study mode">
+        <button class="mode active" data-mode="explain" type="button">Explain</button>
+        <button class="mode" data-mode="summarize" type="button">Summarize</button>
+        <button class="mode" data-mode="quiz" type="button">Make a quiz</button>
+      </div>
+
+      <button id="askButton" class="ask" type="button">Ask AI <span>→</span></button>
+    </section>
+
+    <section id="answerCard" class="answer-card" hidden aria-live="polite">
+      <p class="label">Study helper's answer</p>
+      <div id="answer"></div>
+    </section>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>
