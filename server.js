@@ -6,7 +6,7 @@ const app = express();
 const port = process.env.PORT || 3000;
 
 app.use(express.json({ limit: "100kb" }));
-app.use(express.static("public"));
+app.use(express.static("."));
 
 app.post("/api/study", async (req, res) => {
   const { question, mode = "explain" } = req.body ?? {};
