@@ -1,6 +1,5 @@
 import "dotenv/config";
 import express from "express";
-import OpenAI from "openai";
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -15,33 +14,48 @@ app.post("/api/study", async (req, res) => {
     return res.status(400).json({ error: "Please write a topic or question first." });
   }
 
-  if (question.length > 3_000) {
-    return res.status(400).json({ error: "Please keep your question under 3,000 characters." });
+  if (!process.env.GEMINI_API_KEY) {
+    return res.status(500).json({ error: "GEMINI_API_KEY is not set on the server yet." });
   }
 
-  if (!process.env.OPENAI_API_KEY) {
-    return res.status(500).json({ error: "OPENAI_API_KEY is not set on the server yet." });
-  }
-
-  const modeInstructions = {
+  const modes = {
     explain: "Explain the topic simply, using a small example when useful.",
     summarize: "Give a clear, short study summary with the most important points.",
     quiz: "Create 5 short quiz questions. Do not give answers until the student asks."
   };
 
-  const instruction = modeInstructions[mode] ?? modeInstructions.explain;
-
   try {
-    const client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
-    const response = await client.responses.create({
-      model: process.env.OPENAI_MODEL || "gpt-5",
-      instructions: `You are a kind study helper. ${instruction} Use plain language. Reply in the same language as the student's question.`,
-      input: question.trim()
-    });
+    const response = await fetch(
+      "https://generativelanguage.googleapis.com/v1beta/models/gemini-3.7-flash:generateContent",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "x-goog-api-key": process.env.GEMINI_API_KEY
+        },
+        body: JSON.stringify({
+          contents: [{
+            parts: [{
+              text: `You are a kind study helper. ${modes[mode] || modes.explain} Reply in the same language as the student.\n\nStudent's question: ${question.trim()}`
+            }]
+          }]
+        })
+      }
+    );
 
-    res.json({ answer: response.output_text || "I could not create an answer. Please try again." });
-  } catch (error) {
-    console.error("OpenAI request failed:", error);
+    const data = await response.json();
+
+    if (!response.ok) {
+      return res.status(500).json({ error: "Gemini could not answer right now. Please try again." });
+    }
+
+    const answer = data.candidates?.[0]?.content?.parts
+      ?.map((part) => part.text || "")
+      .join("")
+      .trim();
+
+    res.json({ answer: answer || "I could not create an answer. Please try again." });
+  } catch {
     res.status(500).json({ error: "The AI request failed. Please try again in a moment." });
   }
 });
