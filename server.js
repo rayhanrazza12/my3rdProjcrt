@@ -46,7 +46,7 @@ app.post("/api/study", async (req, res) => {
     const data = await response.json();
 
     if (!response.ok) {
-      return res.status(500).json({ error: "Gemini could not answer right now. Please try again." });
+      return res.status(500).json({ error: data.error?.message || "Gemini could not answer right now." });
     }
 
     const answer = data.candidates?.[0]?.content?.parts
