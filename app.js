@@ -49,3 +49,32 @@ askButton.addEventListener("click", async () => {
     askButton.innerHTML = "Ask AI <span>→</span>";
   }
 });
+
+// Voice Feature: Text-to-Speech logic
+const speakBtn = document.getElementById('speakBtn');
+
+// Jab AI ka response aaye to button show karne ke liye logic
+function showSpeakButton() {
+  if (speakBtn) {
+    speakBtn.style.display = 'inline-block';
+  }
+}
+
+// Button click par answer bol kar sunane ka event
+if (speakBtn) {
+  speakBtn.addEventListener('click', () => {
+    // Agar pehle se kuch bol raha ho to stop karein
+    window.speechSynthesis.cancel();
+
+    // Answer container se text uthana
+    const answerElement = document.getElementById('answer') || document.querySelector('.answer-box');
+    const textToSpeak = answerElement ? answerElement.innerText : '';
+
+    if (textToSpeak.trim() !== '') {
+      const speech = new SpeechSynthesisUtterance(textToSpeak);
+      speech.rate = 0.9; // Normal bolne ki speed
+      speech.pitch = 1;
+      window.speechSynthesis.speak(speech);
+    }
+  });
+}
