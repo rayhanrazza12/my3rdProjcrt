@@ -23,3 +23,56 @@ button { font: inherit; cursor: pointer; }
 .ask:hover { background: #8195f6; }.ask:disabled { opacity: .65; cursor: wait; }.ask span { font-size: 1.25rem; margin-left: 6px; }
 .answer-card { margin-top: 18px; }.answer-card .label { margin-top: 0; } #answer { white-space: pre-wrap; line-height: 1.65; color: #e5e9fb; }
 @media (max-width: 480px) { .app { padding: 40px 0; } .card, .answer-card { padding: 20px; } }
+
+/* Pakistan flag inspired theme */
+body {
+  background: radial-gradient(circle at 20% 0%, #0f6b3b 0, transparent 32rem), #03180d;
+  color: #ffffff;
+}
+
+.eyebrow, .label {
+  color: #b9efcb;
+}
+
+.hero p:last-child {
+  color: #d9f7e2;
+}
+
+.card, .answer-card {
+  background: rgba(8, 55, 31, 0.9);
+  border-color: #3b915f;
+}
+
+textarea {
+  background: #062b17;
+  border-color: #5ab77d;
+  color: #ffffff;
+}
+
+textarea:focus {
+  border-color: #ffffff;
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.18);
+}
+
+.mode {
+  border-color: #63b783;
+  color: #eaffef;
+}
+
+.mode.active {
+  background: #ffffff;
+  border-color: #ffffff;
+  color: #075c30;
+}
+
+.ask {
+  background: #078340;
+}
+
+.ask:hover {
+  background: #0aa854;
+}
+
+#answer {
+  color: #ffffff;
+}
