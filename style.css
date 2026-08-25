@@ -48,3 +48,38 @@ html, body {
   height: auto;
   z-index: 10;
 }
+
+/* Restore Pakistan green theme */
+body {
+  background: radial-gradient(circle at 20% 0%, #0f6b3b 0, transparent 32rem), #03180d !important;
+  color: #ffffff;
+}
+
+.card, .answer-card {
+  background: rgba(8, 55, 31, 0.9) !important;
+  border-color: #3b915f !important;
+}
+
+textarea {
+  background: #062b17 !important;
+  border-color: #5ab77d !important;
+  color: #ffffff !important;
+}
+
+.eyebrow, .label {
+  color: #b9efcb !important;
+}
+
+.mode {
+  border-color: #63b783 !important;
+  color: #eaffef !important;
+}
+
+.mode.active {
+  background: #ffffff !important;
+  color: #075c30 !important;
+}
+
+.ask {
+  background: #078340 !important;
+}
