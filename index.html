@@ -43,32 +43,3 @@
 .hero { position: relative; } .flag { position: absolute; top: -18px; right: -85px; font-size: 4rem; filter: drop-shadow(0 8px 8px rgba(0, 0, 0, 0.35)); transform-origin: left center; animation: flagWave 2s ease-in-out infinite; } @keyframes flagWave { 0%, 100% { transform: rotate(-8deg) translateY(0); } 50% { transform: rotate(8deg) translateY(-8px); } } @media (max-width: 700px) { .flag { position: relative; top: 0; right: 0; margin-top: 12px; } }
 </style>
 }
-
-.flag {
-  position: absolute;
-  top: -18px;
-  right: -85px;
-  font-size: 4rem;
-  filter: drop-shadow(0 8px 8px rgba(0, 0, 0, 0.35));
-  transform-origin: left center;
-  animation: flagWave 2s ease-in-out infinite;
-}
-
-@keyframes flagWave {
-  0%, 100% {
-    transform: rotate(-8deg) translateY(0);
-  }
-
-  50% {
-    transform: rotate(8deg) translateY(-8px);
-  }
-}
-
-@media (max-width: 700px) {
-  .flag {
-    position: relative;
-    top: 0;
-    right: 0;
-    margin-top: 12px;
-  }
-}
