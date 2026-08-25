@@ -42,6 +42,7 @@ askButton.addEventListener("click", async () => {
     });
     const data = await response.json();
     answer.textContent = data.answer || data.error || "Something went wrong. Please try again.";
+    showSpeakButton();
   } catch {
     answer.textContent = "Could not reach the server. Please try again.";
   } finally {
