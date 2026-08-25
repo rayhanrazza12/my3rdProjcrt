@@ -34,3 +34,17 @@ button { font: inherit; cursor: pointer; }
   transform-origin: left center;
   animation: flagWave 2s ease-in-out infinite;
 }
+
+/* Keep Pakistan flag fully visible on screen */
+html, body {
+  overflow-x: hidden;
+}
+
+.flag {
+  position: fixed !important;
+  top: 150px !important;
+  right: 30px !important;
+  width: 100px !important;
+  height: auto;
+  z-index: 10;
+}
