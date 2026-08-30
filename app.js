@@ -79,3 +79,24 @@ if (speakBtn) {
     }
   });
 }
+// Copy to Clipboard Feature
+const copyBtn = document.getElementById('copyBtn');
+
+if (copyBtn) {
+  copyBtn.addEventListener('click', async () => {
+    const answerElement = document.getElementById('answer');
+    const textToCopy = answerElement ? answerElement.innerText : '';
+
+    if (textToCopy.trim() !== '') {
+      try {
+        await navigator.clipboard.writeText(textToCopy);
+        copyBtn.innerText = '✅ Copied!';
+        setTimeout(() => {
+          copyBtn.innerText = '📋 Copy Answer';
+        }, 2000);
+      } catch (err) {
+        console.error('Copy karne mein masla aaya: ', err);
+      }
+    }
+  });
+}
